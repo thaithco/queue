@@ -14,6 +14,7 @@ Queue::~Queue() {
 }
 
 void Queue::enqueue(int i) {
+
  //check for full queue, copy queue into double size queue
  if(size >= capacity){
   int* temp = theQueue;
@@ -25,18 +26,25 @@ void Queue::enqueue(int i) {
   capacity *= 2;
   delete[] temp;
  }
- 
- theQueue[back] = i;
- if(size >= 1){
- back++;
+ //end check
+
+ if(size > 0){ //if the array is not empty, move index and input -- empty to one-element array does not move index value
+  back=(back+1)%capacity;   
+  theQueue[back] = i;
+ }
+ else{
+  theQueue[back] = i;
  }
  size++;
 }
 
 int Queue::dequeue() {
- assert(!isEmpty()); //asserts that the queue isn't empty
+
+ //asserts that the queue isn't empty
+ assert(!isEmpty());
+
  //check for 1/4 full queue, create smaller queue and copy values
- if(size <= capacity/4) {
+ if(size <= capacity/4) { 
   int* temp = theQueue;
   theQueue = new int[capacity/2];
 
@@ -46,14 +54,18 @@ int Queue::dequeue() {
   capacity /= 2;
   delete[] temp;
  }
- 
+ //end check
+
+ //assign the front value to a temp variable, then remove the value
  int value = theQueue[front];
  theQueue[front] = 0;
- if(size >= 1) { 
- front++;
+
+ //if the queue is not a one element queue -- one element to empty queue does not move index pointer
+ if(size > 1) {
+  front=(front+1)%capacity;
  }
  size--;
- return *value;
+ return value;
 }
 
 int Queue::getSize() {

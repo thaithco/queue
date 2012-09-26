@@ -15,9 +15,9 @@ int main(){
 
  cout << q->getSize() << endl;
 
- cout << "Dequeue 3" << q->dequeue() << endl;
- cout << "Dequeue 2" << q->dequeue() << endl;
- cout << "Dequeue 1" << q->dequeue() << endl;
+ cout << "Dequeue 1: " << q->dequeue() << endl;
+ cout << "Dequeue 2: " << q->dequeue() << endl;
+ cout << "Dequeue 3: " << q->dequeue() << endl;
 
  cout << q->getSize() << endl;
 }
