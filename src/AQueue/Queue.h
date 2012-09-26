@@ -3,7 +3,7 @@
 
 class Queue {
  private:
-  int[]* theQueue;
+  int* theQueue;
   int front;
   int back;
   int size;
@@ -16,6 +16,6 @@ class Queue {
   int dequeue();
   int getSize();
   bool isEmpty();
-}
+};
 
 #endif

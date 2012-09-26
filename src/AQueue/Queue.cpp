@@ -1,4 +1,5 @@
 #include "Queue.h"
+#include "assert.h"
 
 Queue::Queue(int initialSize) {
  theQueue = new int[initialSize];
@@ -24,9 +25,11 @@ void Queue::enqueue(int i) {
   capacity *= 2;
   delete[] temp;
  }
-
+ 
  theQueue[back] = i;
+ if(size >= 1){
  back++;
+ }
  size++;
 }
 
@@ -44,17 +47,19 @@ int Queue::dequeue() {
   delete[] temp;
  }
  
- int temp = theQueue[front]
- delete theQueue[front];
+ int value = theQueue[front];
+ theQueue[front] = 0;
+ if(size >= 1) { 
  front++;
+ }
  size--;
- return temp;
+ return *value;
 }
 
-int Queue::size() {
+int Queue::getSize() {
  return size;
 }
 
-bool isEmpty() {
+bool Queue::isEmpty() {
  return (size == 0);
 }
