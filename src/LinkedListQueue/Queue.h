@@ -1,18 +1,22 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+#include "Node.h"
+
 class Queue {
  private:
-  list<int>* theQueue;
-  int initialSize;
+  Node* front;
+  Node* back;
+  int size;
+  int capacity;
 
  public:
-  Queue(int size = 10);
+  Queue();
   ~Queue();
   void enqueue(int i);
   int dequeue();
   int getSize();
   bool isEmpty();
-}
+};
 
 #endif

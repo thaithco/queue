@@ -1,43 +1,40 @@
 #include "Queue.h"
+#include <list>
 
-Queue::Queue() {
- size = 0;
- front = 0;
- back = 0;
+Queue::Queue(int size) {
+ list<int>* theQueue = new list<int>(size);
+ initialSize = size;
 }
 
 Queue::~Queue() {
- Node* temp = front
- while (front != 0) {
-  delete front;
-  temp = temp->getNext();
- }
+ delete theQueue;
 }
 
 void Queue::enqueue(int i) {
- Node* nextNode = new Node(i);
- if (size < 1) {
-  front = back = nextNode;
+ assert(theQueue->size() <= theQueue->max_size)(); //asserts that the queue isn't bigger than the maximum size somehow
+
+ if(theQueue->size() = theQueue->max_size()){
+  theQueue->resize(theQueue->max_size() * 2);
  }
- else {
- back.setnext(nextNode);
- }
- size++;
+
+ theQueue->push_back(i);
+
 }
 
 int Queue::dequeue() {
  assert(!isEmpty()); //asserts that the queue isn't empty
- Node* temp = front;
- delete front;
- front = temp->getNext(); 
- size--;
- return temp->getValue();
+
+ if(theQueue->size() = theQueue->max_size()/4 && theQueue->max_size() > initialSize){
+  theQueue->resize(theQueue->max_size() / 2); //halves the size of the array if 1/4 of the array is being used
+ }
+
+ return theQueue->pop_front(); 
 }
 
 int Queue::size() {
- return size;
+ return theQueue->size();
 }
 
 bool isEmpty() {
- return (size == 0);
+ return (theQueue->size() <= 0);
 }

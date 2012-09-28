@@ -8,6 +8,7 @@ class Queue {
   int back;
   int size;
   int capacity;
+  int initialCapacity;
 
  public:
   Queue(int initialSize = 10);
